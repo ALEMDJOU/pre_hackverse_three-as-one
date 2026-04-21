@@ -54,7 +54,7 @@ loginForm?.addEventListener("submit", async (e) => {
         const data = await api.login({ email, password });
         setAuthToken(data?.token || data?.access_token || data?.accessToken);
         showToast("Connexion réussie ! Redirection...", "success");
-        setTimeout(() => window.location.replace("./dashboard.html"), 400);
+        window.location.replace("./dashboard.html");
     } catch (error) {
         setBtnLoading(btn, false, originalText);
         showToast(error.message || "Erreur lors de la connexion.", "error");
@@ -100,7 +100,7 @@ signupForm?.addEventListener("submit", async (e) => {
         
         setAuthToken(data.access_token);
         showToast("Compte créé avec succès ! Bienvenue.", "success");
-        setTimeout(() => window.location.replace("./dashboard.html"), 400);
+        window.location.replace("./dashboard.html");
     } catch (error) {
         setBtnLoading(btn, false, originalText);
         showToast(error.message || "Erreur lors de l'inscription.", "error");
