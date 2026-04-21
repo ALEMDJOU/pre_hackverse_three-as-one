@@ -40,7 +40,7 @@ loginForm?.addEventListener("submit", async (e) => {
         const data = await api.login({ email, password });
         setAuthToken(data?.token || data?.access_token || data?.accessToken);
         showToast("Connexion réussie ! Redirection...", "success");
-        setTimeout(() => window.location.href = "./dashboard.html", 1000);
+        setTimeout(() => window.location.href = "./dashboard.html", 300);
     } catch (error) {
         showToast(error.message || "Connexion impossible pour le moment. Verifiez que l'endpoint /auth/login existe cote backend.", "error");
     }
@@ -78,9 +78,10 @@ signupForm?.addEventListener("submit", async (e) => {
             password,
             profile_photo: base64Photo
         });
-        setAuthToken(data?.access_token || data?.token || data?.accessToken);
-        showToast("Compte cree avec succes.", "success");
-        setTimeout(() => window.location.href = "./dashboard.html", 1000);
+        
+        setAuthToken(data.access_token);
+        showToast("Compte créé avec succès ! Bienvenue.", "success");
+        setTimeout(() => window.location.href = "./dashboard.html", 300);
     } catch (error) {
         showToast(error.message || "Inscription impossible pour le moment.", "error");
     }

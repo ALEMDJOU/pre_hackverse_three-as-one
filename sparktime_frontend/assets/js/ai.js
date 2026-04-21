@@ -79,7 +79,7 @@ function initAIAssistant() {
         } catch (e) {
             const typingMsg = document.getElementById("typing-" + Date.now());
             if(typingMsg) typingMsg.remove();
-            msgsContainer.innerHTML += `<div style="background: #fee2e2; color: #b91c1c; padding: 12px; border-radius: 12px 12px 12px 0; align-self: flex-start; max-width: 85%;">Une erreur est survenue (${e.message || "Erreur"}). Le backend a peut-être besoin de la clé API Qwen.</div>`;
+            msgsContainer.innerHTML += `<div style="background: #fee2e2; color: #b91c1c; padding: 12px; border-radius: 12px 12px 12px 0; align-self: flex-start; max-width: 85%;">Une erreur est survenue (${e.message || "Erreur"}). Vérifiez la clé API GROQ dans le backend.</div>`;
         }
     }
 

@@ -55,5 +55,3 @@ Pour que l'assistant fonctionne, vous devez posséder une clé API chez [Groq](h
 - Le frontend utilise `api.js` pour centraliser tous les appels fetch.
 - Les notifications utilisent le système global `window.showToast(message, type)`.
 
----
-*Développé avec ❤️ pour l'AirSentinel Project.*
