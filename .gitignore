@@ -1,0 +1,78 @@
+# ==============================================
+# Sparktime - .gitignore (version optimisée)
+# =============================================
+
+# ==================== Python / Backend ========n============
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Environnement
+.env
+.DS_Store
+Thumbs.db
+
+# Base de données SQLite
+*.db
+sparktime.db
+*.sqlite3
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# ==================== Frontend ====================
+# Fichiers temporaires du navigateur / éditeurs
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Si tu utilises un build plus tard (Vite, etc.)
+node_modules/
+dist/
+build/
+
+# ==================== Général ====================
+# IDE / Éditeurs
+.vscode/
+.idea/
+*.sublime-*
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Autres fichiers temporaires
+*.tmp
+*.temp

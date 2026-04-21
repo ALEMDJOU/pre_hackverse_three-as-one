@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparktime - Dashboard</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body class="app-shell">
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <header class="app-header">
+        <div class="container">
+            <a href="../index.html" class="logo"><img src="../assets/images/logo.png" alt="Logo Sparktime"><span>sparktime</span></a>
+            <nav class="desktop-nav">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="tasks.html">Tâches</a>
+                <a href="planner.html">Planning</a>
+                <a href="profile.html">Profil</a>
+            </nav>
+        </div>
+    </header>
+    <main class="app-main">
+        <div class="container app-grid">
+            <section class="panel animate-in skeleton">
+                <h2>Résumé du jour</h2>
+                <p id="dashboard-summary">Chargement...</p>
+            </section>
+            <section class="panel animate-in skeleton">
+                <h2>Actions rapides</h2>
+                <p><a href="tasks.html" class="btn btn-primary btn-glow">Créer une tâche</a></p>
+            </section>
+            <section class="panel animate-in skeleton">
+                <h2>Tâches prioritaires</h2>
+                <ul class="task-list" id="dashboard-priority-list"></ul>
+            </section>
+            <section class="panel animate-in skeleton">
+                <h2>Planning</h2>
+                <p>Consultez la vue semaine dans la page planning.</p>
+            </section>
+        </div>
+    </main>
+    <script src="../assets/js/env.js"></script>
+    <script type="module" src="../assets/js/guard.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script type="module" src="../assets/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparktime - Authentification</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card animate-in reveal">
+            <div class="auth-header">
+                <a href="../index.html" class="auth-logo">
+                    <img src="../assets/images/logo.png" alt="Logo Sparktime">
+                </a>
+                <h1 id="auth-title">Bon retour !</h1>
+                <p id="auth-subtitle">Connectez-vous pour gérer votre temps.</p>
+            </div>
+
+            <form id="login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="login-email">Email étudiant</label>
+                    <input type="email" id="login-email" placeholder="nom@etudiant.univ.fr" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Mot de passe</label>
+                    <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn btn-auth">Se connecter</button>
+                <p class="auth-switch">Pas encore de compte ? <a href="#" id="show-signup">S'inscrire</a></p>
+            </form>
+
+            <form id="signup-form" class="auth-form hidden">
+                <div class="form-group">
+                    <label for="signup-name">Nom complet</label>
+                    <input type="text" id="signup-name" placeholder="Alex Martin" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email étudiant</label>
+                    <input type="email" id="signup-email" placeholder="nom@etudiant.univ.fr" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Mot de passe</label>
+                    <input type="password" id="signup-password" placeholder="Minimum 8 caractères" required autocomplete="new-password">
+                </div>
+                <button type="submit" class="btn btn-auth">Créer mon compte</button>
+                <p class="auth-switch">Déjà inscrit ? <a href="#" id="show-login">Se connecter</a></p>
+            </form>
+        </div>
+        
+        <a href="../index.html" class="back-home">← Retour au site</a>
+    </div>
+
+    <script src="../assets/js/env.js"></script>
+    <script type="module" src="../assets/js/auth.js"></script>
+</body>
+</html>
