@@ -25,7 +25,10 @@
                 </div>
                 <div class="form-group">
                     <label for="login-password">Mot de passe</label>
-                    <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+                    <div style="position: relative; display: flex; align-items: center;">
+                        <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password" style="width: 100%; padding-right: 40px;">
+                        <button type="button" class="password-toggle" tabindex="-1" style="position: absolute; right: 12px; background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.1rem; padding: 0;">👁️</button>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-auth">Se connecter</button>
                 <p class="auth-switch">Pas encore de compte ? <a href="#" id="show-signup">S'inscrire</a></p>
@@ -37,12 +40,26 @@
                     <input type="text" id="signup-name" placeholder="Alex Martin" required autocomplete="name">
                 </div>
                 <div class="form-group">
+                    <label for="signup-photo">Photo de profil (Optionnel)</label>
+                    <input type="file" id="signup-photo" accept="image/*">
+                </div>
+                <div class="form-group">
                     <label for="signup-email">Email étudiant</label>
                     <input type="email" id="signup-email" placeholder="nom@etudiant.univ.fr" required autocomplete="email">
                 </div>
                 <div class="form-group">
                     <label for="signup-password">Mot de passe</label>
-                    <input type="password" id="signup-password" placeholder="Minimum 8 caractères" required autocomplete="new-password">
+                    <div style="position: relative; display: flex; align-items: center;">
+                        <input type="password" id="signup-password" placeholder="Minimum 8 caractères" required autocomplete="new-password" style="width: 100%; padding-right: 40px;">
+                        <button type="button" class="password-toggle" tabindex="-1" style="position: absolute; right: 12px; background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.1rem; padding: 0;">👁️</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password-confirm">Confirmer le mot de passe</label>
+                    <div style="position: relative; display: flex; align-items: center;">
+                        <input type="password" id="signup-password-confirm" placeholder="••••••••" required autocomplete="new-password" style="width: 100%; padding-right: 40px;">
+                        <button type="button" class="password-toggle" tabindex="-1" style="position: absolute; right: 12px; background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.1rem; padding: 0;">👁️</button>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-auth">Créer mon compte</button>
                 <p class="auth-switch">Déjà inscrit ? <a href="#" id="show-login">Se connecter</a></p>

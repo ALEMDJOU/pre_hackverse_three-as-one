@@ -39,9 +39,10 @@ loginForm?.addEventListener("submit", async (e) => {
     try {
         const data = await api.login({ email, password });
         setAuthToken(data?.token || data?.access_token || data?.accessToken);
-        window.location.href = "./dashboard.html";
+        showToast("Connexion réussie ! Redirection...", "success");
+        setTimeout(() => window.location.href = "./dashboard.html", 1000);
     } catch (error) {
-        alert(error.message || "Connexion impossible pour le moment. Verifiez que l'endpoint /auth/login existe cote backend.");
+        showToast(error.message || "Connexion impossible pour le moment. Verifiez que l'endpoint /auth/login existe cote backend.", "error");
     }
 });
 
@@ -50,13 +51,51 @@ signupForm?.addEventListener("submit", async (e) => {
     const fullName = document.getElementById("signup-name").value.trim();
     const email = document.getElementById("signup-email").value.trim();
     const password = document.getElementById("signup-password").value;
+    const passwordConfirm = document.getElementById("signup-password-confirm").value;
+    const photoInput = document.getElementById("signup-photo");
+    
+    if (password !== passwordConfirm) {
+        showToast("Les mots de passe ne correspondent pas.", "error");
+        return;
+    }
+    
+    let base64Photo = undefined;
 
     try {
-        const data = await api.register({ full_name: fullName, email, password });
+        if (photoInput.files && photoInput.files[0]) {
+            const file = photoInput.files[0];
+            base64Photo = await new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        const data = await api.register({ 
+            full_name: fullName, 
+            email, 
+            password,
+            profile_photo: base64Photo
+        });
         setAuthToken(data?.access_token || data?.token || data?.accessToken);
-        alert("Compte cree avec succes. Vous pouvez vous connecter.");
-        window.location.href = "./dashboard.html";
+        showToast("Compte cree avec succes.", "success");
+        setTimeout(() => window.location.href = "./dashboard.html", 1000);
     } catch (error) {
-        alert(error.message || "Inscription impossible pour le moment.");
+        showToast(error.message || "Inscription impossible pour le moment.", "error");
     }
+});
+
+// Gestion de la visibilité des mots de passe
+document.querySelectorAll(".password-toggle").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const input = btn.previousElementSibling;
+        if (input.type === "password") {
+            input.type = "text";
+            btn.innerHTML = "🙈";
+        } else {
+            input.type = "password";
+            btn.innerHTML = "👁️";
+        }
+    });
 });

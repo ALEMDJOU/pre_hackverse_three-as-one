@@ -22,9 +22,9 @@ form?.addEventListener("submit", async (e) => {
     try {
         const updated = await api.updateMe({ full_name: nameInput.value.trim() });
         nameInput.value = updated.full_name || "";
-        alert("Profil mis a jour.");
+        showToast("Profil mis a jour avec succès.", "success");
     } catch (error) {
-        alert(error.message || "Mise a jour impossible.");
+        showToast(error.message || "Mise a jour impossible.", "error");
     }
 });
 
@@ -37,10 +37,11 @@ photoForm?.addEventListener("submit", async (e) => {
         if (data.profile_photo) {
             preview.src = data.profile_photo;
             preview.style.display = "block";
+            showToast("Photo mise à jour !", "success");
         }
     } catch (error) {
-        alert(error.message || "Upload impossible.");
+        showToast(error.message || "Upload impossible.", "error");
     }
 });
 
-loadProfile().catch((error) => alert(error.message || "Chargement profil impossible."));
+loadProfile().catch((error) => showToast(error.message || "Chargement profil impossible.", "error"));

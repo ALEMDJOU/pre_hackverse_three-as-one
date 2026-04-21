@@ -59,3 +59,26 @@ document.querySelectorAll(".btn-glow").forEach((button) => {
 setTimeout(() => {
     document.querySelectorAll(".skeleton").forEach((el) => el.classList.remove("skeleton"));
 }, 700);
+
+// Global Toast System
+window.showToast = function(message, type = "success") {
+    let container = document.getElementById("toast-container");
+    if (!container) {
+        container = document.createElement("div");
+        container.id = "toast-container";
+        document.body.appendChild(container);
+    }
+    
+    const toast = document.createElement("div");
+    toast.className = `toast toast-${type}`;
+    toast.innerText = message;
+    
+    container.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.classList.add("hide");
+        toast.addEventListener("animationend", () => {
+            toast.remove();
+        });
+    }, 4000);
+};

@@ -23,12 +23,15 @@
         <div class="container">
             <section class="panel animate-in">
                 <h2>Planning hebdomadaire</h2>
-                <p>Lundi: Cours + TP | Mardi: Revision | Mercredi: Projet | Jeudi: Exos | Vendredi: Rendu</p>
+                <div id="planner-container" style="display: flex; flex-direction: column; gap: 16px; margin-top: 20px;">
+                    <p style="text-align: center; opacity: 0.6;">Chargement du planning...</p>
+                </div>
             </section>
         </div>
     </main>
     <script src="../assets/js/env.js"></script>
     <script type="module" src="../assets/js/guard.js"></script>
     <script src="../assets/js/main.js"></script>
+    <script type="module" src="../assets/js/planner.js"></script>
 </body>
 </html>

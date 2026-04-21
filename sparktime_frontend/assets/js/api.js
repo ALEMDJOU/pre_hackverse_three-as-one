@@ -37,7 +37,7 @@ async function request(path, options = {}) {
         let message = "Erreur API";
         try {
             const data = await response.json();
-            message = data.message || message;
+            message = data.detail || data.message || message;
         } catch (_) {
             // Keep default message if JSON cannot be parsed.
         }
@@ -92,5 +92,10 @@ export const api = {
     deleteTask: (taskId) =>
         request(`/tasks/${taskId}`, {
             method: "DELETE"
+        }),
+    aiChat: (prompt) =>
+        request("/ai/chat", {
+            method: "POST",
+            body: JSON.stringify({ prompt })
         })
 };

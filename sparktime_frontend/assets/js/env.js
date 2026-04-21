@@ -1,6 +1,6 @@
 (async function loadRuntimeEnv() {
     try {
-        const response = await fetch("../.env", { cache: "no-store" });
+        const response = await fetch("/.env", { cache: "no-store" });
         if (!response.ok) return;
 
         const text = await response.text();
