@@ -7,9 +7,9 @@ const showLogin = document.getElementById("show-login");
 const authTitle = document.getElementById("auth-title");
 const authSubtitle = document.getElementById("auth-subtitle");
 
-const urlParams = new URLSearchParams(window.location.search);
-const initialMode = urlParams.get("mode") || "login";
-setMode(initialMode);
+if (isAuthenticated()) {
+    window.location.href = "./dashboard.html";
+}
 
 function setMode(mode) {
     const login = mode === "login";
@@ -19,16 +19,6 @@ function setMode(mode) {
     authSubtitle.textContent = login
         ? "Connectez-vous pour gérer votre temps."
         : "Inscrivez-vous et commencez a planifier.";
-}
-
-function setBtnLoading(btn, isLoading, originalText) {
-    if (isLoading) {
-        btn.disabled = true;
-        btn.innerHTML = `<span class="spinner"></span> Traitement...`;
-    } else {
-        btn.disabled = false;
-        btn.innerHTML = originalText;
-    }
 }
 
 showSignup?.addEventListener("click", (e) => {
@@ -43,29 +33,21 @@ showLogin?.addEventListener("click", (e) => {
 
 loginForm?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const btn = e.target.querySelector('button[type="submit"]');
-    const originalText = "Se connecter";
-    
     const email = document.getElementById("login-email").value.trim();
     const password = document.getElementById("login-password").value;
 
-    setBtnLoading(btn, true);
     try {
         const data = await api.login({ email, password });
         setAuthToken(data?.token || data?.access_token || data?.accessToken);
         showToast("Connexion réussie ! Redirection...", "success");
-        window.location.replace("./dashboard.html");
+        setTimeout(() => window.location.href = "./dashboard.html", 300);
     } catch (error) {
-        setBtnLoading(btn, false, originalText);
-        showToast(error.message || "Erreur lors de la connexion.", "error");
+        showToast(error.message || "Connexion impossible pour le moment. Verifiez que l'endpoint /auth/login existe cote backend.", "error");
     }
 });
 
 signupForm?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const btn = e.target.querySelector('button[type="submit"]');
-    const originalText = "Créer mon compte";
-
     const fullName = document.getElementById("signup-name").value.trim();
     const email = document.getElementById("signup-email").value.trim();
     const password = document.getElementById("signup-password").value;
@@ -77,7 +59,6 @@ signupForm?.addEventListener("submit", async (e) => {
         return;
     }
     
-    setBtnLoading(btn, true);
     let base64Photo = undefined;
 
     try {
@@ -100,10 +81,9 @@ signupForm?.addEventListener("submit", async (e) => {
         
         setAuthToken(data.access_token);
         showToast("Compte créé avec succès ! Bienvenue.", "success");
-        window.location.replace("./dashboard.html");
+        setTimeout(() => window.location.href = "./dashboard.html", 300);
     } catch (error) {
-        setBtnLoading(btn, false, originalText);
-        showToast(error.message || "Erreur lors de l'inscription.", "error");
+        showToast(error.message || "Inscription impossible pour le moment.", "error");
     }
 });
 
