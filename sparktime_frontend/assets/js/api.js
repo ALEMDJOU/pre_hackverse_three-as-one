@@ -38,7 +38,7 @@ async function request(path, options = {}) {
             clearAuthToken();
             // On ne redirige pas si on est déjà sur la page d'accueil ou de login
             if (!window.location.pathname.includes("auth.html") && !window.location.pathname.endsWith("/")) {
-                window.location.href = window.location.pathname.includes("/pages/") ? "./auth.html" : "pages/auth.html";
+                window.location.href = window.location.pathname.includes("/pages/") ? "../index.html" : "index.html";
             }
         }
         let message = "Erreur API";
