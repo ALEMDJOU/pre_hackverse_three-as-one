@@ -21,6 +21,10 @@ function setMode(mode) {
         : "Inscrivez-vous et commencez a planifier.";
 }
 
+const urlParams = new URLSearchParams(window.location.search);
+const initialMode = urlParams.get('mode') || 'login';
+setMode(initialMode);
+
 showSignup?.addEventListener("click", (e) => {
     e.preventDefault();
     setMode("signup");
@@ -35,6 +39,8 @@ loginForm?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const email = document.getElementById("login-email").value.trim();
     const password = document.getElementById("login-password").value;
+    const submitBtn = loginForm.querySelector('button[type="submit"]');
+    submitBtn.classList.add("btn-loading");
 
     try {
         const data = await api.login({ email, password });
@@ -42,7 +48,9 @@ loginForm?.addEventListener("submit", async (e) => {
         showToast("Connexion réussie ! Redirection...", "success");
         setTimeout(() => window.location.href = "./dashboard.html", 300);
     } catch (error) {
-        showToast(error.message || "Connexion impossible pour le moment. Verifiez que l'endpoint /auth/login existe cote backend.", "error");
+        showToast(error.message || "Connexion impossible pour le moment.", "error");
+    } finally {
+        submitBtn.classList.remove("btn-loading");
     }
 });
 
@@ -54,12 +62,15 @@ signupForm?.addEventListener("submit", async (e) => {
     const passwordConfirm = document.getElementById("signup-password-confirm").value;
     const photoInput = document.getElementById("signup-photo");
     
+    const submitBtn = signupForm.querySelector('button[type="submit"]');
+    
     if (password !== passwordConfirm) {
         showToast("Les mots de passe ne correspondent pas.", "error");
         return;
     }
     
     let base64Photo = undefined;
+    submitBtn.classList.add("btn-loading");
 
     try {
         if (photoInput.files && photoInput.files[0]) {
@@ -84,6 +95,8 @@ signupForm?.addEventListener("submit", async (e) => {
         setTimeout(() => window.location.href = "./dashboard.html", 300);
     } catch (error) {
         showToast(error.message || "Inscription impossible pour le moment.", "error");
+    } finally {
+        submitBtn.classList.remove("btn-loading");
     }
 });
 

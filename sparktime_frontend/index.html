@@ -23,7 +23,8 @@
                 <a href="pages/dashboard.html">Dashboard</a>
             </nav>
             <div class="header-cta">
-                <a href="pages/auth.html" class="btn btn-primary btn-glow">S'inscrire</a>
+                <a href="pages/auth.html?mode=login" class="btn btn-ghost-dark" style="margin-right: 10px;">Connexion</a>
+                <a href="pages/auth.html?mode=signup" class="btn btn-primary btn-glow">S'inscrire</a>
             </div>
             <button class="mobile-menu-toggle" aria-label="Ouvrir le menu">
                 <span></span><span></span><span></span>
@@ -35,7 +36,8 @@
         <a href="#fonctionnalites">Fonctionnalités</a>
         <a href="#propos">À propos</a>
                 <a href="pages/dashboard.html">Dashboard</a>
-        <a href="pages/auth.html" class="btn btn-primary">S'inscrire</a>
+        <a href="pages/auth.html?mode=login" class="btn btn-ghost-dark">Connexion</a>
+        <a href="pages/auth.html?mode=signup" class="btn btn-primary">S'inscrire</a>
     </nav>
 
     <main>
@@ -46,7 +48,7 @@
                     <h1>Maîtrisez votre temps d'étudiant, intelligemment.</h1>
                     <p>Planifiez vos tâches, suivez vos priorités et restez concentré chaque semaine.</p>
                     <div class="hero-actions">
-                        <a href="pages/auth.html" class="btn btn-light">Démarrer gratuitement</a>
+                        <a href="pages/auth.html?mode=signup" class="btn btn-light">Démarrer gratuitement</a>
                         <a href="pages/dashboard.html" class="btn btn-ghost-light">Voir la démo</a>
                     </div>
                 </div>
@@ -82,18 +84,24 @@
         </section>
     </main>
 
-    <footer>
-        <div class="container">
+    <footer class="main-footer">
+        <div class="container footer-row">
             <a href="index.html" class="logo">
                 <img src="assets/images/logo.png" alt="Logo Sparktime">
                 <span>sparktime</span>
             </a>
-            <nav class="footer-nav">
-                <a href="pages/auth.html">Connexion</a>
-                <a href="pages/profile.html">Profil</a>
-                <a href="pages/tasks.html">Tâches</a>
+            
+            <nav class="footer-nav-links">
+                <a href="#fonctionnalites">Fonctionnalités</a>
             </nav>
-            <p class="copyright">&copy; 2026 sparktime</p>
+
+            <div class="footer-right">
+                <div class="social-links">
+                    <a href="#" class="social-icon">𝕏</a>
+                    <a href="#" class="social-icon">📸</a>
+                </div>
+                <p class="copyright-mini">&copy; 2026 Sparktime</p>
+            </div>
         </div>
     </footer>
 

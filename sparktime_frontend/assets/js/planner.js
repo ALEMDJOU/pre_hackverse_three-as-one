@@ -17,7 +17,7 @@ async function loadPlanner() {
         const pendingTasks = tasks.filter(t => t.status !== "done");
 
         if (pendingTasks.length === 0) {
-            container.innerHTML = '<p style="text-align: center; opacity: 0.6;">Super, vous n\'avez aucune tâche en attente ! 🎉</p>';
+            container.innerHTML = '<p style="text-align: center; opacity: 0.6; grid-column: 1 / -1;">Super, vous n\'avez aucune tâche en attente ! 🎉</p>';
             return;
         }
 
@@ -46,18 +46,20 @@ async function loadPlanner() {
 
         sortedDays.forEach(day => {
             html += `
-                <div style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 12px;">
-                    <h3 style="margin-bottom: 12px; color: var(--color-primary);">${day}</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                <div class="planner-card animate-card reveal">
+                    <h3><span>📅</span> ${day}</h3>
+                    <ul class="planner-task-list">
             `;
             
-            // Trier les tâches du jour par priorité
             const priorityWeight = { urgent: 4, high: 3, medium: 2, low: 1 };
             groups[day].sort((a, b) => priorityWeight[b.priority] - priorityWeight[a.priority]).forEach(task => {
                 html += `
-                    <li style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;">
-                        <span><strong>${task.title}</strong> <span style="font-size: 0.8em; opacity: 0.7;">(${task.estimated_minutes} min)</span></span>
-                        <span class="chip">${task.priority}</span>
+                    <li class="planner-task-item priority-${task.priority}">
+                        <div class="planner-task-header">
+                            <span class="planner-task-title">${task.title}</span>
+                            <span class="chip">${task.priority}</span>
+                        </div>
+                        <div class="planner-task-meta">${task.estimated_minutes} min</div>
                     </li>
                 `;
             });
@@ -67,15 +69,17 @@ async function loadPlanner() {
 
         if (noDateTasks.length > 0) {
             html += `
-                <div style="background: rgba(255,255,255,0.02); padding: 16px; border-radius: 12px; margin-top: 16px;">
-                    <h3 style="margin-bottom: 12px; opacity: 0.7;">À planifier (Sans échéance)</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                <div class="planner-card animate-card reveal" style="border-style: dashed;">
+                    <h3><span>💡</span> À planifier</h3>
+                    <ul class="planner-task-list">
             `;
             noDateTasks.forEach(task => {
                 html += `
-                    <li style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;">
-                        <span><strong>${task.title}</strong></span>
-                        <span class="chip">${task.priority}</span>
+                    <li class="planner-task-item priority-${task.priority}">
+                         <div class="planner-task-header">
+                            <span class="planner-task-title">${task.title}</span>
+                            <span class="chip">${task.priority}</span>
+                        </div>
                     </li>
                 `;
             });

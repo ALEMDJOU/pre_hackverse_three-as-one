@@ -28,19 +28,24 @@ form?.addEventListener("submit", async (e) => {
     }
 });
 
-photoForm?.addEventListener("submit", async (e) => {
-    e.preventDefault();
+photoFileInput?.addEventListener("change", async () => {
     const file = photoFileInput.files?.[0];
     if (!file) return;
+
     try {
+        // Optionnel : un petit indicateur de chargement local si besoin
+        showToast("Chargement de la nouvelle photo...", "info");
         const data = await api.uploadProfilePhoto(file);
         if (data.profile_photo) {
             preview.src = data.profile_photo;
             preview.style.display = "block";
-            showToast("Photo mise à jour !", "success");
+            showToast("Photo de profil mise à jour !", "success");
+            
+            // Recharger la page ou mettre à jour les autres avatars si nécessaire
+            setTimeout(() => window.location.reload(), 1000);
         }
     } catch (error) {
-        showToast(error.message || "Upload impossible.", "error");
+        showToast(error.message || "Impossible de charger la photo.", "error");
     }
 });
 
